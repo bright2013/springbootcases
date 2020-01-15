@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf例子</title>
+</head>
+<body>
+<table>
+    <thead>
+        <th>No.</th>
+        <td>工作内容</td>
+        <td>心得体会</td>
+        <td>遇到的困难</td>
+        <td>解决办法</td>
+        <td>明日计划</td>
+    </thead>
+    <tr th:each="ribaoEntry,ribaoStat:${tribaolist}">
+        <td th:text="${ribaoStat.index + 1}"> </td>
+        <td th:text="${ribaoEntry.gongcuoneirong}"> </td>
+        <td th:text="${ribaoEntry.xinde}"> </td>
+        <td th:text="${ribaoEntry.kunnan}"> </td>
+        <td th:text="${ribaoEntry.banfa}"> </td>
+        <td th:text="${ribaoEntry.jihua}"> </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>本组日报</title>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Icons-->
+    <link href="/icons/css/free.min.css" rel="stylesheet">
+    <link href="/css/flag-icon.min.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/pace.min.css" rel="stylesheet">
+    <link href="/css/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+  </head>
+  <body class="c-app">
+    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+      <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="/assets/brand/coreui-base-white.jpeg" width="118" height="46" alt="卓越班"><img class="c-sidebar-brand-minimized" src="/assets/brand/coreui-signet-white.svg" width="118" height="46" alt="CoreUI Logo"></div>
+      <ul class="c-sidebar-nav">
+        <li class="c-sidebar-nav-title">我的日报</li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="/write">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/icons/svg/free.svg#cil-pencil"></use>
+            </svg> 写日报</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/myreport">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/icons/svg/free.svg#cil-drop1"></use>
+
+            </svg> 看日报</a></li>
+
+        <li class="c-sidebar-nav-title">检查日报</li>
+        <li class="c-sidebar-nav-item"  sec:authorize="hasRole('ROLE_GROUPLEADER')">
+          <a class="c-sidebar-nav-link" href="/groupreport">
+          <svg class="c-sidebar-nav-icon">
+            <use xlink:href="/icons/svg/free.svg#cil-check"></use>
+          </svg> 本组日报</a></li>
+        <li class="c-sidebar-nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
+          <a class="c-sidebar-nav-link" href="/classreport">
+          <svg class="c-sidebar-nav-icon">
+            <use xlink:href="/icons/svg/free.svg#cil-compass"></use>
+
+          </svg>班级日报</a></li>
+
+
+        <li class="c-sidebar-nav-item mt-auto">
+          <a class="c-sidebar-nav-link" href="/logout" target="_top">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/icons/svg/free.svg#cil-account-logout"></use>
+            </svg> 退出登陆</a></li>
+
+      </ul>
+      <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    </div>
+    <div class="c-wrapper">
+      <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+        <button class="c-header-toggler c-class-toggler d-lg-none mr-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show"><span class="c-header-toggler-icon"></span></button><a class="c-header-brand d-sm-none" href="#"><img class="c-header-brand" src="/assets/brand/coreui-base.svg" width="97" height="46" alt="CoreUI Logo"></a>
+        <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true"><span class="c-header-toggler-icon"></span></button>
+        <div class="c-subheader px-3">
+          <!-- Breadcrumb-->
+          <ol class="breadcrumb border-0 m-0">
+            <li class="breadcrumb-item">首页</li>
+            <li class="breadcrumb-item"><a href="#">日报</a></li>
+            <li class="breadcrumb-item active">本组日报</li>
+            <!-- Breadcrumb Menu-->
+          </ol>
+        </div>
+      </header>
+      <div class="c-body">
+        <main class="c-main">
+          <div class="container-fluid">
+            <div class="fade-in">
+              <table id="table"
+                     data-show-export="true"
+                     data-click-to-select="true"
+                     data-show-toggle="true"
+                     data-show-columns="true">
+                <!--<thead>-->
+                <!--<tr>-->
+                  <!--<th data-field="createdAt">ID</th>-->
+                  <!--<th data-field="difficulty">Item Name</th>-->
+                  <!--<th data-field="workContent">Item Price</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+              </table>
+
+
+
+
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer class="c-footer mt-4">
+        <div>卓越班 © 2019</div>
+      </footer>
+    </div>
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <!-- CoreUI and necessary plugins-->
+    <script src="/js/pace.min.js"></script>
+    <script src="/js/coreui.bundle.min.js"></script>
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!--<script src="/js/quill.min.js"></script>-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <!--<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>-->
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/js/groupreportlist.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2 @@
+classname=com.excel.reflection.Animal
+methodname=sayName
